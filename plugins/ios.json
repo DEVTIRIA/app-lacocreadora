@@ -1,0 +1,30 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.alejandrotiria.coCreadora"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.alejandrotiria.coCreadora"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.alejandrotiria.coCreadora"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.alejandrotiria.coCreadora"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.alejandrotiria.coCreadora"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.alejandrotiria.coCreadora"
+        }
+    },
+    "dependent_plugins": {}
+}

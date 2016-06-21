@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="author" content="Henry Alejandro Tiria">
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" href="jquery-mobile/jquery.mobile-1.4.5.min.css">
+        <link rel="stylesheet" href="jquery-mobile/themes/coCreadora.min.css">
+        <link rel="stylesheet" href="jquery-mobile/themes/jquery.mobile.icons.min.css">
+
+        <link rel="stylesheet" href="css/swiper.min.css">  <!-- Link Swiper's CSS -->
+        <link rel="stylesheet" href="css/style.css"> <!--Mis estilos-->
+
+        <title>coCreadora</title>
+
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+
+    </head>
+
+    <body>
+            <!--Splash gif - inicio-->
+            <div data-role="page" id="splash">
+                <div data-role="content" class="splash">
+                    <div class="splah-img">
+                        <img src="img/IntroConexion.gif" alt="splash" width="280"/>
+                    </div>
+                </div>
+            </div>
+
+    <div data-role="page" id="pageLogin" data-theme="c">
+
+            <div data-role="header">
+                    <div data-role="main"><h1 class="tituloPage RidemyBikeProBold">Bienvenido a la conexión creadora</h1></div>
+            </div>
+
+            <div data-role="content">
+            
+                    <img src="img/logoLogin.png" alt="logo login" id="imgLogin">
+                    
+                    <input type="text" data-role="none" class="inputForm RidemyBikeProBold" name="username" id="username" placeholder="usuario">
+                    <input type="password" data-role="none" class="inputForm RidemyBikeProBold espaciado" name="password" id="password" placeholder="******">
+
+                    <p id="errorUsuario"></p>
+
+                    <p class="colorBlanco" onClick="reset_password();" id="btnResetPasswd">¿has olvidado la contraseña?</p>
+
+                    <p class="text-center espaciado"><a href="#" onClick="login();"><img src="img/iniciarBtn.png" width="90" id="btnLogin" alt="img Login"></a></p>
+                    <!-- <a href="#pageCategorias" id="page_two_link"></a> -->
+
+                    <p class="colorBlanco">¿Aún no eres miembro?</p>
+                    <p class="text-center espaciado"><a href="#" onClick="registrarse();"><img src="img/registrarBtn.png" width="90" id="btnRegistrar" alt=""></a></p>
+                    <!-- <p class="text-center espaciado"><a href="http://www.laconexioncreadora.com/registrarse/"><img src="img/registrarBtn.png" width="90" id="btnRegistrar" alt="img registro"></a></p> -->
+
+            </div>
+
+            <div data-role="footer" data-position="fixed"></div>
+    </div> <!--end page-->
+
+
+       <div data-role="page" id="pageCategorias">
+       		<div data-role="header" data-theme="c">
+                <div data-role="content">
+                	<h1 class="tituloPage RidemyBikeProBold">Hoy es un gran día</h1>
+                </div>
+            </div>
+            <div data-role="content">
+				<div id="contenedorCategorias">
+                    <ul data-role="listview">
+                        <li>
+                            <a href="#pageDinamicas" data-transition="slide">
+                                <img src="img/dinamicas.png" alt="img Dinamicas">
+                                <p><span class="RidemyBikeProBold categorias"><span id="cantDinamicas"></span> Dinámicas</span></p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#pageCreaciones" data-transition="slide">
+                                <img src="img/creaciones.png" alt=" img Creaciones">
+                                <p><span class="RidemyBikeProBold categorias"><span id="cantCreaciones"></span> Creaciones</span></p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#pageMentores" data-transition="slide">
+                                <img src="img/mentores.png" alt="img Mentores">
+                                <p><span class="RidemyBikeProBold categorias"><span id="cantMentores"></span> Mentores</span></p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+			</div>
+			<div data-role="footer" data-position="fixed" data-theme="c">
+            	<div data-role="navbar">
+                	<ul>
+                        <li><a href="#pageDinamicas" data-icon="carat-r" data-transition="slide"></a></li>
+                    </ul>
+                </div>
+            </div>
+       </div> <!--end page-->
+
+       <div data-role="page" id="pageDinamicas">
+            <div data-role="header" data-position="fixed" data-theme="c">
+            	<div data-role="navbar">
+                	<ul style="padding-top: 20px;">
+                    	<li><a href="#pageAyudaDinamicas" data-rel="dialog" style="padding: 0;"><img src="img/ayudaicon.png" alt="img ayuda" width="32"></a></li>
+                             <li><img src="img/dinamicatitle.png" width="80" id="imgTituloDinamicas" alt=""></li>
+                            <!-- <li><button onClick="notificationConfirm()"><img src="img/salidaicon.png" alt="img salida" width="40"></button></li> -->
+                            <li><button onClick="logout_user();" style="padding: 0;"><img src="img/salidaicon.png" alt="img salida" width="32"></button></li>
+
+                    </ul>
+                </div>
+            </div>
+            <div data-role="content" class="text-left" data-theme="a">
+
+                <form class="espaciado">
+                    <input data-type="search" id="filtroDinamicas" data-role="none" class="RidemyBikeProBold inputSearch">
+                    <img src="img/buscarBtn.png" alt="img buscar" width="39" class="verticalMiddle imgLupa">
+                </form>
+
+
+                <p><button data-role="none" class="btnVerde" id="btnDinamicaAleatoria">Aleatoria</button></p>
+                <p><img src="img/buscarImg.png" alt="img buscar"></p>
+                <p>
+		<button data-role="none" class="btnVerde" id="btnDescripcionDinamica">Descripción</button>
+		<button data-role="none" class="btnVerde espaciado" id="btnObjetivosDinamica">Objetivos</button>
+		<button data-role="none" class="btnVerde" id="btnNombreDinamica">Nombre</button>
+<!--					<button data-role="none" class="btnVerde espaciado">Tags</button>     -->
+                </p>
+                 <p><img src="img/ordenarPorImg.png" alt="img ordenarPor"></p>
+                <p>
+                	<button data-role="none" class="btnVerde" id="btnDinamicasRecientes">Recientes</button>
+		<button data-role="none" class="btnVerde espaciado" id="btnDinamicasInspiradoras">Inspiradora</button>
+		<button data-role="none" class="btnVerde" id="btnDinamicasPracitcas">Práctica</button>
+		<button data-role="none" class="btnVerde espaciado" id="btnDinaimcasGeniales">Genial</button>
+                </p>
+                <p>
+		<button data-role="none" class="btnVerde" id="btnDinamicasGrupal">Grupal</button>
+		<button data-role="none" class="btnVerde" id="btnDinamicasIndividual">Individual</button>
+                </p>
+
+                <div class="bordeDottedHorizontal"></div>
+
+                	<!--Aca se imprime todas las dinamicas-->
+                    <div data-filter="true" data-input="#filtroDinamicas" id="contenidoDinamicas">
+
+
+                    </div>
+
+            </div>
+			<div data-role="footer" data-position="fixed" data-theme="c" class="footer"></div>
+       </div>  <!--end page-->
+
+       <div data-role="page" id="pageInfoDinamica">
+            <div data-role="header" data-position="fixed" data-theme="c">
+                <div data-role="navbar">
+                    <ul style="padding-top: 20px;">
+                         <li><a href="#pageAyudaDinamicas" data-rel="dialog" style="padding: 0;"><img src="img/ayudaicon.png" alt="img ayuda" width="32"></a></li>
+                        <li><img src="img/dinamicatitle.png" alt="img titulo" width="80" id="imgInfoDInamicas"></li>
+                        <!-- <li><button onclick="notificationConfirm()"><img src="img/salidaicon.png" alt="img salida" width="40"></button></li> -->
+                        <li><button onClick="logout_user();" style="padding: 0;"><img src="img/salidaicon.png" alt="img salida" width="32"></button></li>
+                    </ul>
+       	        </div>
+            </div>
+            <div data-role="content" data-theme="a" class="text-left">
+
+            		<div class="ui-grid-a">
+                    	<div class="ui-block-a">
+                            <a href="#imageDinamica" data-rel="popup" data-transition="fade" data-position-to="window">
+                        	   <img src="" id="imgDinamica" class="fondoOscuro" alt="">
+                               <a href="#pageDinamicas" data-role="button" data-icon="carat-l" data-iconpos="notext" data-theme="c">atras</a>
+                              </a>
+                            </div>
+
+                            <div data-role="popup" id="imageDinamica">
+                                <a href="#" data-role="button" data-rel="back" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Cerrar</a>
+                                <img src=" " alt="imagen dinámica" class="popphoto" id="imageDinamicaAmpliada" width="270">
+                            </div>
+
+
+                        <div class="ui-block-b">
+                        	<p id="tituloInfoDinamica"></p>
+							<p>
+                                <span id="nombreInfoCreador"></span>
+	                            <span id="tipoInfoDinamica"></span>
+                            </p>
+                            <p id="tipoInfoUsuario"></p>
+                            <p><span id="duracionDinamica"></span> min</p>
+                            <p class="votos"><span id="votosDinamica"></span> votos</p>
+                            <p><a href="#" onClick="sliderImagenes()"><img src="img/realizarBtn.png" alt="" width="50"></a></p>
+                             <!-- <p><a href="#pageSlider"><img src="img/realizarBtn.png" alt="" width="50"></a></p> -->
+
+                        </div>
+                    </div>
+
+                    <div class="bordeDottedHorizontal"></div>
+
+                    <img src="img/califica.png" alt="img califica" width="80" class="verticalMiddle">
+					<button data-role="none" class="btnVerde" id="btnCalificar1" onClick="calificarDinamica(1)">Inspiradora</button>
+					<button data-role="none" class="btnVerde espaciado" id="btnCalificar2" onClick="calificarDinamica(2)">Práctica</button>
+					<button data-role="none" class="btnVerde" id="btnCalificar3" onClick="calificarDinamica(3)">Genial</button>
+
+                    <div class="bordeDottedHorizontal"></div>
+					<button data-role="none" class="btnVerdeOscuro">Descripción</button>
+					<p id="descripcionDinamica" class="espaciado"></p>
+					<button data-role="none" class="btnVerdeOscuro">Objetivos</button>
+					<p id="objetivosDinamica" class="espaciado"></p>
+
+					<button data-role="none" class="btnVerdeOscuro">Resultados</button>
+					<p class="espaciado" id="resultadosDinamicas"></p>
+
+					<button data-role="none" class="btnVerdeOscuro espaciado">Compartir</button>
+
+                    <p>
+                            <a href=""><img src="img/facebook.jpg" alt="img facebook" id="imgFacebookDinamica" class="iconosSocialesGris"></a>
+
+                            <a href=""><img src="img/twitter.jpg" alt="img twitter" id="imgTwitterDinamica" class="iconosSocialesGris"></a>
+
+                    </p>
+            </div>
+            <div data-role="footer" data-position="fixed" data-theme="c" class="footer"></div>
+       </div> <!--end page-->
+
+
+
+<!--       slider imagenes-->
+        <div data-role="page" id="pageSlider">
+            <div data-role="main" class="ui-content">
+
+                <!-- Swiper -->
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+
+
+       <div data-role="page" id="pageNuevaCreacion">
+           <div data-role="header" data-position="fixed" data-theme="c">
+                <div data-role="navbar">
+                        <ul style="padding-top: 20px;">
+                            <li><a href="#pageAyudaCreaciones" data-rel="dialog" style="padding: 0;"><img src="img/ayudaicon.png" alt="img ayuda" width="32"></a></li>
+                            <li><img src="img/creacionestitle.png" alt="img titulo" width="80" id="imgTituloCreaciones"></li>
+                            <!-- <li><button onclick="notificationConfirm()"><img src="img/salidaicon.png" alt="img salida" width="40"></button></li> -->
+                            <li><button onClick="logout_user();" style="padding: 0;"><img src="img/salidaicon.png" alt="img salida" width="32"></button></li>
+                        </ul>
+                </div>
+           </div>
+           <div data-role="content" data-theme="a" id="contenedorNuevaCreacion">
+
+           	<div class="text-left">
+				<a href="#pageInfoDinamica" data-role="button" data-icon="carat-l" data-iconpos="notext" data-theme="c">atras</a>
+				<p class="text-center"><img src="img/recopilarTitulo.png" alt="" width="120"></p>
+
+				<button data-role="none" class="btnVerdeOscuro">Nombre</button>
+                <input type="text" data-role="none" class="RidemyBikeProBold inputForm espaciado" name="nombreCreacion" id="nombreCreacion" required><br>
+
+				<button data-role="none" class="btnVerdeOscuro">Tipo</button>
+                <p>
+					<button data-role="none" class="btnVerde espaciado" id="btnTipo1" value="1" onclick="cambioColor(1);">Acción</button>
+					<button data-role="none" class="btnVerde" id="btnTipo2" value="2" onclick="cambioColor(2);">Aprendizaje</button>
+					<button data-role="none" class="btnVerde espaciado" id="btnTipo3" value="3" onclick="cambioColor(3);">Idea</button>
+					<button data-role="none" class="btnVerde" id="btnTipo4" value="4" onclick="cambioColor(4);">Oportunidad</button>
+					<button data-role="none" class="btnVerde espaciado" id="btnTipo5" value="5" onclick="cambioColor(5);">Otra</button>
+                </p>
+
+                <button data-role="none" class="btnVerdeOscuro">Descripción</button>
+
+                <textarea data-role="none" class="RidemyBikeProBold textareaForm espaciado" name="descripCreacion"  id="descripCreacion" cols="30" rows="10" placeholder="Describe en 140 caracteres lo que otros pueden lograr con tu Dinámica. Por ejemplo: Conectar conocimiento sobre un tema." maxlength="140" required></textarea>
+
+				<button data-role="none" class="btnVerdeOscuro">Explicación</button>
+
+                <textarea name="expCreacion" id="expCreacion" cols="30" rows="10" data-role="none" class="textareaForm RidemyBikeProBold espaciado" placeholder="Describe en 500 caracteres en qué consiste la dinámica. Por ejemplo, puedes describir el paso a paso."></textarea>
+
+                <p class="RidemyBikeProBold" style="font-size:20px;">Carga hasta 4 imagenes para ilustrar tu creación</p>
+
+                <a href="#" onClick="hacerFoto()"><img src="img/takephoto.png" alt="img camara" width="50" class="espaciado"></a>
+
+		<div class="ui-grid-c text-center espaciado">
+                        <div class="ui-block-a">
+                            <img src="" id="imgCamara1" width="80" alt="">
+                        </div>
+                        <div class="ui-block-b">
+                            <img src="" id="imgCamara2" width="80" alt="">
+                        </div>
+                        <div class="ui-block-c">
+                            <img src="" id="imgCamara3" width="80" alt="">
+                        </div>
+                        <div class="ui-block-d">
+                            <img src="" id="imgCamara4" width="80" alt="">
+                        </div>
+                </div>
+
+
+                <p id="mensajeCantFotos" class="RidemyBikeProBold espaciado"></p>
+                <p id="mensajeError" class="RidemyBikeProBold espaciado"></p>
+
+                <a href="#" class="btnVerde RidemyBikeProBold" id="btnPrevisualizar" data-rel="popup" data-transition="slidedown" data-position-to="window">Previsualizar</a>
+            </div>
+
+           </div>
+           <div data-role="footer" data-position="fixed" data-theme="c" class="footer"></div>
+       </div> <!--end page-->
+
+
+        <div data-role="page" id="Pageprevisulizacion" data-theme="c">
+            <div data-role="header">
+                     <p class="fondoPrevisualiza tituloPrev"><img src="img/previsualizaTop.png" alt="" width="100"></p>
+              </div>
+              <div data-role="content" id="contenedorNuevCreacion">
+                    <div class="text-left">
+
+                    	<p class="resultPrevisualizacion RidemyBikeProBold text-center" id="tituloNuevaCreacion"></p>
+
+                        <p><button data-role="none" class="btnVerdeOscuro espaciado">Tipo de creación</button></p>
+                        <p class="resultPrevisualizacion RidemyBikeProBold" id="tipoNuevaCreacion"></p>
+
+                        <p><button data-role="none" class="btnVerdeOscuro">Descripción</button></p>
+                        <p class="resultPrevisualizacion RidemyBikeProBold espaciado" id="descNuevaCreacion"></p>
+
+                        <p><button data-role="none" class="btnVerdeOscuro">Explicación</button></p>
+                        <p class="resultPrevisualizacion RidemyBikeProBold espaciado" id="explicNuevaCreacion"></p>
+
+                        <!-- <p><button data-role="none" class="btnVerdeOscuro">Tags</button></p> -->
+
+
+                        <div class="espaciado">
+                            <span class="btnVerdeMedioOscuro" id="tag1"></span>
+                           	<span class="btnVerdeMedioOscuro" id="tag2"></span>
+                            <span class="btnVerdeMedioOscuro" id="tag3"></span>
+                            <span class="btnVerdeMedioOscuro" id="tag4"></span>
+                            <span class="btnVerdeMedioOscuro" id="tag5"></span>
+                            <span class="btnVerdeMedioOscuro" id="tag6"></span>
+                            <span class="btnVerdeMedioOscuro" id="tag7"></span>
+                            <span class="btnVerdeMedioOscuro" id="tag8"></span>
+                        </div>
+
+                        <p><button data-role="none" class="btnVerdeOscuro">Imágenes</button></p>
+
+                        <div class="ui-grid-c text-center espaciado">
+                        	<div class="ui-block-a">
+	                            <img src="" id="foto1" alt="">
+                            </div>
+                            <div class="ui-block-b">
+	                            <img src="" id="foto2" alt="">
+                            </div>
+                            <div class="ui-block-c">
+	                            <img src="" id="foto3" alt="">
+                            </div>
+                            <div class="ui-block-d">
+	                            <img src="" id="foto4" alt="">
+                            </div>
+                        </div>
+
+                        <p class="text-center">
+                            <a href="#" id="enviardatos"><img src="img/guardarBtn.png" alt="btn guardar" width="60"></a>
+                            <a href="#" onClick="pageNuevaCreacion();"><img src="img/cancelarBtn.png" alt="btn cancelar" width="60"></a>
+                        </p>
+
+                        <div id="limiteCreaciones">
+
+                        </div>
+
+                    </div>
+                </div>
+                <div data-role="none" data-position="fixed" class="ui-footer text-left fondoPrevisualiza"></div>
+      	</div>  <!--end page-->
+
+
+
+       <div data-role="page" id="pageCreaciones">
+       		<div data-role="header" data-position="fixed" data-theme="c">
+                <div data-role="navbar">
+                            <ul style="padding-top: 20px;">
+                                <li><a href="#pageAyudaCreaciones" data-rel="dialog" style="padding: 0;"><img src="img/ayudaicon.png" alt="img ayuda" width="32"></a></li>
+                                <li><img src="img/creacionestitle.png" width="80" id="imgTituloCreaciones" alt=""></li>
+                                <!-- <li><button onclick="notificationConfirm()"><img src="img/salidaicon.png" alt="img salida" width="40"></button></li> -->
+                                <li><button onClick="logout_user();" style="padding: 0;"><img src="img/salidaicon.png" alt="img salida" width="32"></button></li>
+                            </ul>
+                </div>
+            </div>
+            <div data-role="content" class="text-left fondoBlanco" data-theme="a">
+
+                <form>
+                    <input data-type="search" id="filtroCreaciones" data-role="none" class="inputSearch RidemyBikeProBold">
+                    <img src="img/buscarBtn.png" alt="" class="verticalMiddle imgLupa">
+                </form>
+
+                    <p><img src="img/buscarImg.png" alt="img buscarPor"></p>
+
+             	<p>
+            		<button data-role="none" class="btnVerde" id="btnDescripcionCreacion">Descripción</button>
+            		<!-- <button data-role="none" class="btnDeshabilitado espaciado" id="btnObjetivoCreacion1">Objetivos</button> -->
+            		<button data-role="none" class="btnVerde" id="btnNombreCreacion">Nombre</button>
+            		<!-- <button data-role="none" class="btnDeshabilitado" id="btnTagsCreacion">Tags</button> -->
+                    </p>
+
+                    <p><img src="img/ordenarPorImg.png" alt="img ordenarPor"></p>
+
+                    <p>
+                        <button data-role="none" class="btnVerde" id="btnRecientesCreacion">Recientes</button>
+<!--                         <button data-role="none" class="btnVerde espaciado" id="btnCreacionGrupal">Grupal</button>
+                        <button data-role="none" class="btnVerde" id="btnCreacionIndividual">Individual</button> -->
+                    </p>
+
+
+                <!-- <a href="#" data-role="button" data-rel="back" data-icon="refresh" data-iconpos="notext" onClick="update_page();" data-theme="c">Actualizar</a> -->
+
+                <div class="bordeDottedHorizontal"></div>
+
+
+                <!--aca se imprime todas las creaciones-->
+                <div data-filter="true" data-input="#filtroCreaciones" id="contenidoCreaciones"></div>
+
+            </div>
+			<div data-role="footer" data-position="fixed" data-theme="c" class="footer"></div>
+       </div> <!--end page-->
+
+       <div data-role="page" id="pageInfoCreaciones">
+            <div data-role="header" data-theme="c">
+                    <div data-role="navbar">
+                                <ul style="padding-top: 20px;">
+                                    <li><a href="#pageAyudaCreaciones" data-rel="dialog" style="padding: 0;"><img src="img/ayudaicon.png" alt="img ayuda" width="32"></a></li>
+                                    <li><img src="img/creacionestitle.png" width="80" id="imgTituloCreaciones" alt=""></li>
+                                    <!-- <li><button onclick="notificationConfirm()"><img src="img/salidaicon.png" alt="img salida" width="40"></button></li> -->
+                                    <li><button onClick="logout_user();" style="padding: 0;"><img src="img/salidaicon.png" alt="img salida" width="32"></button></li>
+                                </ul>
+                    </div>
+            </div>
+        <div data-role="content">
+
+			<div class="text-left">
+            	     <div class="ui-grid-a">
+                    	<div class="ui-block-a">
+                        	<a href="#imagenCreacion" data-rel="popup" data-transition="fade" data-position-to="window">
+                                <img src="" id="imgCreacion" class="fondoOscuro" alt="">
+                                <a href="#pageCreaciones" data-role="button" data-icon="carat-l" data-iconpos="notext" data-theme="c">atras</a>
+                            </a>
+
+
+                            <div data-role="popup" id="imagenCreacion">
+                                <a href="#" data-role="button" data-rel="back" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Cerrar</a>
+                                <img src="" class="popphoto" width="300" id="imagenAmpliadaCreacion" alt="">
+                            </div>
+
+                        </div>
+                        <div class="ui-block-b">
+                        	<p id="tituloInfoCreacion"></p>
+							<p>
+								<span id="nombreInfCreador"></span>
+	                            <span id="tipoInfoCreacion"></span>
+                            </p>
+                            <p id="estadisticasInfoCreacion"></p>
+                            <p id="fechaCreacion"></p>
+
+                            <!-- <button data-role="none" class="btnVerde" id="btnBorrarCreacion" onClick="eliminarCreacion()">Eliminar</button> -->
+                            <button data-role="none" class="btnVerde" id="btnBorrarCreacion" onClick="eliminarCreacion()">Eliminar</button>
+
+                        </div>
+                    </div>
+
+                    <div class="bordeDottedHorizontal"></div>
+
+			<div class="ui-grid-b">
+                            	<div class="ui-block-a">
+                                        <a href="#imagen1" data-rel="popup" data-transition="fade" data-position-to="window">
+            	                        	<img src="" class="popphoto" width="80" id="img1" alt="">
+                                        </a>
+                                  </div>
+
+                                <div class="ui-block-b">
+                                	<a href="#imagen2" data-rel="popup" data-transition="fade" data-position-to="window">
+        		                        <img src="" width="80" id="img2" alt="">
+                                      </a>
+                                </div>
+
+                                <div class="ui-block-c">
+                                	<a href="#imagen3" data-rel="popup" data-transition="fade" data-position-to="window">
+        		                        <img src="" width="80" id="img3" alt="">
+                                     </a>
+                                </div>
+                    </div><br>
+
+
+                     <div data-role="popup" id="imagen1">
+                        <a href="#" data-role="button" data-rel="back" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Cerrar</a>
+                        <img src="" class="popphoto" width="300" id="image1" alt="">
+                    </div>
+                     <div data-role="popup" id="imagen2">
+                        <a href="#" data-role="button" data-rel="back" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Cerrar</a>
+                        <img src="" class="popphoto" width="300" id="image2" alt="">
+                    </div>
+                     <div data-role="popup" id="imagen3">
+                        <a href="#" data-role="button" data-rel="back" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Cerrar</a>
+                        <img src="" class="popphoto" width="300" id="image3" alt="">
+                    </div>
+
+
+
+		<button data-role="none" class="btnVerdeOscuro">Descripción</button>
+                    <p id="descripcionCreacion" class="espaciado"></p>
+
+		<button data-role="none" class="btnVerdeOscuro">Explicación</button>
+                    <p class="espaciado" id="explicacionCreacion"></p>
+
+<!--                     <button data-role="none" class="btnVerdeOscuro">Tags</button>
+
+                    <p class="espaciado" id="tagsCreaciones"></p> -->
+
+                    <button data-role="none" class="btnVerdeOscuro">Compartir</button>
+                    <p class="espaciado">
+                            <a href=""><img src="img/facebook.jpg" alt="img facebook" id="imgFacebookCreacion" class="iconosSocialesGris"></a>
+
+                              <a href=""><img src="img/twitter.jpg" alt="img twitter" id="imgTwitterCreacion" class="iconosSocialesGris"></a>
+                    </p>
+
+                   <div class="bordeDottedHorizontal"></div>
+            </div>
+
+        </div>
+        <div data-role="footer" data-position="fixed" data-theme="c" class="footer"></div>
+       </div> <!--end page-->
+
+       <div data-role="page" id="pageMentores">
+       		<div data-role="header" data-position="fixed" data-theme="c">
+                <div data-role="navbar">
+                            <ul style="padding-top: 20px;">
+                                <li><a href="#pageAyudaMentores" data-rel="dialog" style="padding: 0;"><img src="img/ayudaicon.png" alt="img ayuda" width="32"></a></li>
+                                <li><img src="img/mentorestitle.png" alt="img titulo" width="80" id="imgTituloMentores"></li>
+                                <!-- <li><button onclick="notificationConfirm()"><img src="img/salidaicon.png" alt="img salida" width="40"></button></li> -->
+                                <li><button onClick="logout_user();" style="padding: 0;"><img src="img/salidaicon.png" alt="img salida" width="32"></button></li>
+                            </ul>
+                </div>
+            </div>
+            <div data-role="content" class="text-left" data-theme="a">
+
+                    <form>
+	                   <input data-type="search" id="filtroMentores" data-role="none" class="inputSearch RidemyBikeProBold">
+                             <img src="img/buscarBtn.png" alt="img lupa" class="imgLupa verticalMiddle">
+                    </form>
+
+                    <p><img src="img/buscarImg.png" alt="img buscar por"></p>
+                    <p>
+                        <button data-role="none" class="btnVerde" id="btnDescripcionMentor">Descripción</button>
+                        <button data-role="none" class="btnVerde" id="btnNombreMentor">Nombre</button>
+                    </p>
+                    <p><img src="img/ordenarPorImg.png" alt="img ordenar por"></p>
+                    <p>
+                            <button data-role="none" class="btnVerde" id="btnDinamicasMentor">Dinámicas</button>
+                            <button data-role="none" class="btnVerde espaciado" id="btnPopularMentor">Popular</button>
+                            <button data-role="none" class="btnVerde" id="btnMentoresRecientes">Reciente</button>
+                    </p>
+
+                    <div class="bordeDottedHorizontal"></div>
+
+                    <!--aca se imprime todos los mentores-->
+                    <div data-filter="true" data-input="#filtroMentores" id="contenedorMentores">
+
+
+
+                    </div>
+
+
+
+            </div>
+			<div data-role="footer" data-position="fixed" data-theme="c" class="footer"></div>
+       </div> <!--end page-->
+
+
+       <div data-role="page" id="pageInfoMentor">
+       	<div data-role="header" data-position="fixed" data-theme="c">
+                <div data-role="navbar">
+                            <ul style="padding-top: 20px;">
+                                <li><a href="#pageAyudaMentores" data-rel="dialog" style="padding: 0;"><img src="img/ayudaicon.png" alt="img ayuda" width="32"></a></li>
+                                <li><a href="#"><img src="img/mentorestitle.png" alt="img titulo" width="80" id="imgTituloMentores"></a></li>
+                                <!-- <li><button onclick="notificationConfirm()"><img src="img/salidaicon.png" alt="img salida" width="40"></button></li> -->
+                                <li><button onClick="logout_user();" style="padding: 0;"><img src="img/salidaicon.png" alt="img salida" width="32"></button></li>
+                            </ul>
+                </div>
+        </div>
+        <div data-role="content" id="contenidoInfoMentores">
+
+            <div class="text-left">
+            	     <div class="ui-grid-a">
+                    	<div class="ui-block-a contenedorImgMentor">
+                                    <a href="#imagenMentor" data-rel="popup" data-transition="fade" data-position-to="window">
+                                	   <img src="" width="120" id="imgMentor" class="fondoOscuro" alt="">
+                                       <a href="#pageMentores" data-role="button" data-icon="carat-l" data-iconpos="notext" data-theme="c">atras</a>
+                                    </a>
+
+                                     <div data-role="popup" id="imagenMentor">
+                                            <a href="#" data-role="button" data-rel="back" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Cerrar</a>
+                                            <img src=" " alt="imagen mentor" class="popphoto" id="imagenApliadaMentor" width="200">
+                                    </div>
+                            </div>
+                        <div class="ui-block-b contenedorInfoMentor">
+                                    	<p id="nombreInfoMentor"></p>
+
+                                        <div id="redesSocialesMentores"></div>
+
+                        </div>
+                    </div>
+
+                    <div class="bordeDottedHorizontal"></div>
+
+					<button data-role="none" class="btnVerdeOscuro">Perfil</button>
+                    <p id="perfilMentor" class="espaciado"></p>
+
+					<button data-role="none" class="btnVerdeOscuro espaciado">Dinámicas</button>
+					<div id="dinamicasMentor"></div>
+
+            </div>
+        </div>
+		<div data-role="footer" data-position="fixed" data-theme="c" class="footer"></div>
+       </div> <!--end page-->
+
+
+
+<!--       Página de ayuda Dinamicas-->
+       <div data-role="page" id="pageAyudaDinamicas" data-theme="c">
+            <div data-role="header"><br>
+                <div data-role="main"><h1 class="tituloAyuda RidemyBikeProBold textShadow">Cómo podemos ayudarte</h1></div>
+            </div>
+            <div data-role="conten" id="contenidoAyudaDinamicas">
+            	<p class="RidemyBikeProBold tituloAyuda  textShadow">Aquí encontrarás respuestas a tus preguntas sobre La Conexión Creadora</p>
+
+                <form class="espaciado">
+                    <input data-type="search" id="filtroPreguntDinamicas" data-role="none" class="RidemyBikeProBold inputSearch">
+                    <img src="img/buscarBtn.png" alt="img buscar" width="39" class="verticalMiddle imgLupa">
+                </form>
+
+                <div class="text-left">
+                	<img src="img/preguntas_frecuentes.png" alt="img preguntas frecuentes" width="160">
+
+					<div data-filter="true" data-input="#filtroPreguntDinamicas">
+
+                        <p><img src="img/ico_adminracion.png" alt="" width="35" class="imgPreguntas"><span class="preguntas RidemyBikeProBold">¿Qué es una Dinámica?</span></p>
+                        <p class="respuestaPreguntas">Una dinámica es un ejercicio que te ayudará a facilitar un proceso creativo para dar respuesta a una pregunta planeada. </p>
+
+                        <p><img src="img/ico_adminracion.png" alt="" width="35" class="imgPreguntas"><span class="preguntas RidemyBikeProBold">¿Qué tipos de dinámicas encuentro en La Conexión Creadora?</span></p>
+                        <p class="respuestaPreguntas">En la aplicación existen dos tipos de dinámicas: las individuales y las grupales. Cada una de ellas está diseñada para realizarse durante un tiempo corto, que va de tres minutos hasta 3 horas. </p>
+
+                       <p><img src="img/ico_adminracion.png" alt="" width="35" class="imgPreguntas"><span class="preguntas RidemyBikeProBold">¿Qué podré lograr al realizar una Dinámica?</span></p>
+                        <p class="respuestaPreguntas">Las dinámicas te ayudarán a generar:</p>
+                        <ul id="listaPreguntas">
+                            <li>Ideas</li>
+                            <li>Aprendizajes</li>
+                            <li>Oportunidades</li>
+                            <li>Acciones</li>
+                        </ul>
+
+                        <p><img src="img/ico_adminracion.png" alt="" width="35" class="imgPreguntas"><span class="preguntas RidemyBikeProBold">¿Quién crea las dinámicas?</span></p>
+                        <p class="respuestaPreguntas">Las dinámicas son creadas por La Conexión Creadora y los Co-creadores. Los Co-creadores son personas con conocimiento sobre procesos de innovación y colaboración. La propiedad intelectual  de las Dinámicas es de sus creadores.</p>
+
+                       	<p><img src="img/ico_adminracion.png" alt="" width="35" class="imgPreguntas"><span class="preguntas RidemyBikeProBold">¿Puedo calificar Dinámicas?</span></p>
+                       	<p class="respuestaPreguntas">Calificar las Dinámicas te ayuda a ti y a otros creadores a conocer cuál ha sido la experiencia con el ejercicio. Tienes la posibilidad de calificar las dinámicas de 3 maneras:</p>
+                        <ol id="listaPreguntas" class="espaciado">
+                            <li>La más práctica: es la Dinámica más fácil de realizar.</li>
+                            <li>La más inspiradora: es la Dinámica que motiva a imaginar y crear.</li>
+                            <li>La Genial: es una Dinámica sobresaliente, que revela un genio creador. </li>
+                        </ol>
+                    </div>
+                    <p>
+			<a href="#PageInfoPremium" data-rel="dialog"><img src="img/Informacion_Premium.png" alt="" width="160"></a>
+	                    <a href="#pageGlosario" data-rel="dialog"><img src="img/Glosario.png" alt="" width="120"></a>
+                    </p>
+                    <p>
+                    	<a href="#" data-rel="back"><img src="img/Regresar_a_la_coneccion_creadora.png" alt="" width="180"></a>
+                    </p>
+
+                </div>
+
+            </div>
+            <div data-role="footer" data-position="fixed"></div>
+       </div> <!--end page-->
+
+
+
+<!--       Página de ayuda Creaciones-->
+           <div data-role="page" id="pageAyudaCreaciones" data-theme="c">
+                <div data-role="header"><br>
+                    <div data-role="main"><h1 class="tituloAyuda RidemyBikeProBold textShadow">Cómo podemos ayudarte</h1></div>
+                </div>
+                <div data-role="conten" id="contenidoAyudaDinamicas">
+                    <p class="RidemyBikeProBold tituloAyuda  textShadow">Aquí encontrarás respuestas a tus preguntas sobre La Conexión Creadora</p>
+
+                    <form class="espaciado">
+                        <input data-type="search" id="filtroPreguntDinamicas" data-role="none" class="RidemyBikeProBold inputSearch">
+                        <img src="img/buscarBtn.png" alt="img buscar" width="39" class="verticalMiddle imgLupa">
+                    </form>
+
+                    <div class="text-left">
+                        <img src="img/preguntas_frecuentes.png" alt="img preguntas frecuentes" width="160">
+
+                        <div data-filter="true" data-input="#filtroPreguntDinamicas">
+
+                            <p><img src="img/ico_adminracion.png" alt="" width="35" class="imgPreguntas"><span class="preguntas RidemyBikeProBold">¿Qué son las Creaciones?</span></p>
+                            <p class="respuestaPreguntas">Las Creaciones son el resultado de practicar las Dinámicas. Una vez realizas un  ejercicio puedes tener como resultado: </p>
+                            <ol id="listaPreguntas">
+                                <li>Una idea</li>
+                                <li>Un aprendizaje</li>
+                                <li>Una oportunidad</li>
+                                <li>Una acción</li>
+                            </ol>
+
+                            <p><img src="img/ico_adminracion.png" alt="" width="35" class="imgPreguntas"><span class="preguntas RidemyBikeProBold">¿Quién genera las Creaciones?</span></p>
+                            <p class="respuestaPreguntas">Tú eres el autor de las Creaciones. Las creaciones pueden almacenarse de manera <strong>individual</strong> o <strong>grupal</strong> cuando participas en un grupo. Al almacenar una <strong>Creación en un grupo</strong> tienes la posibilidad de buscar las creaciones de otros creadores del grupo, por lo que maximizas la explotación e inspiración de esas ideas. </p>
+
+                           <p><img src="img/ico_adminracion.png" alt="" width="35" class="imgPreguntas"><span class="preguntas RidemyBikeProBold">¿Puedo calificar las Creaciones?</span></p>
+                            <p class="respuestaPreguntas">Sí. Calificar las Creaciones te ayuda a identificar las ideas más valiosas para tu Reto. En la app puedes calificar las Creaciones de 3 maneras: </p>
+                            <ol id="listaPreguntas">
+                                <li>La más práctica: es la Creación más fácil de materializar.</li>
+                                <li>La más inspiradora: es la Creación que motiva a imaginar y crear.</li>
+                                <li>La Genial: es una Creación sobresaliente, que revela un genio creador. </li>
+                            </ol>
+                        </div>
+                        <p>
+                            <a href="#PageInfoPremium" data-rel="dialog"><img src="img/Informacion_Premium.png" alt="" width="160"></a>
+                            <a href="#pageGlosario" data-rel="dialog"><img src="img/Glosario.png" alt="" width="120"></a>
+                        </p>
+                        <p>
+                            <a href="#" data-rel="back"><img src="img/Regresar_a_la_coneccion_creadora.png" alt="" width="180"></a>
+                        </p>
+
+                    </div>
+
+                </div>
+                <div data-role="footer" data-position="fixed"></div>
+           </div> <!--end page-->
+
+
+
+           <!--       Página de ayuda Mentores-->
+           <div data-role="page" id="pageAyudaMentores" data-theme="c">
+                <div data-role="header"><br>
+                    <div data-role="main"><h1 class="tituloAyuda RidemyBikeProBold textShadow">Cómo podemos ayudarte</h1></div>
+                </div>
+                <div data-role="conten" id="contenidoAyudaDinamicas">
+                    <p class="RidemyBikeProBold tituloAyuda  textShadow">Aquí encontrarás respuestas a tus preguntas sobre La Conexión Creadora</p>
+
+                    <form class="espaciado">
+                        <input data-type="search" id="filtroPreguntDinamicas" data-role="none" class="RidemyBikeProBold inputSearch">
+                        <img src="img/buscarBtn.png" alt="img buscar" width="39" class="verticalMiddle imgLupa">
+                    </form>
+
+                    <div class="text-left">
+                        <img src="img/preguntas_frecuentes.png" alt="img preguntas frecuentes" width="160">
+
+                        <div data-filter="true" data-input="#filtroPreguntDinamicas">
+
+                            <p><img src="img/ico_adminracion.png" alt="" width="35" class="imgPreguntas"><span class="preguntas RidemyBikeProBold">¿Quiénes son los Mentores?</span></p>
+                            <p class="respuestaPreguntas">Los Mentores son personas que tienen conocimiento sobre un tema especial y aportan Dinámicas y asesoría a La Conexión Creadora. </p>
+                            <p class="respuestaPreguntas">Si crees que puedes ser un Co-creador no dudes en enviar tus Dinámicas a social@laconexioncreadora.com</p>
+
+
+                            <p><img src="img/ico_adminracion.png" alt="" width="35" class="imgPreguntas"><span class="preguntas RidemyBikeProBold">¿Cuáles son los beneficios de ser Mentor?</span></p>
+                            <p class="respuestaPreguntas">En nuestra aplicación hacemos promoción y damos visibilidad a tus dinámicas y perfil para que las personas que le gusten puedan saber más sobre los creadores. </p>
+
+                           <p><img src="img/ico_adminracion.png" alt="" width="35" class="imgPreguntas"><span class="preguntas RidemyBikeProBold">¿Las Dinámicas quedan protegidas bajo derecho de autor?</span></p>
+                            <p class="respuestaPreguntas">La propiedad intelectual de las Dinámicas es de la persona que las crea.</p>
+
+                        </div>
+                        <p>
+                            <a href="#PageInfoPremium" data-rel="dialog"><img src="img/Informacion_Premium.png" alt="" width="160"></a>
+                            <a href="#pageGlosario" data-rel="dialog"><img src="img/Glosario.png" alt="" width="120"></a>
+                        </p>
+                        <p>
+                            <a href="#" data-rel="back"><img src="img/Regresar_a_la_coneccion_creadora.png" alt="" width="180"></a>
+                        </p>
+
+                    </div>
+
+                </div>
+                <div data-role="footer" data-position="fixed"></div>
+           </div> <!--end page-->
+
+
+
+
+       <div data-role="page" id="PageInfoPremium" data-theme="c">
+            <div data-role="header"><br>
+                <div data-role="main"><h1 class="tituloPage RidemyBikeProBold">Cuenta Premium</h1></div>
+            </div>
+            <div data-role="content" id="contenidoPremium" class="text-left">
+				<p class="RidemyBikeProBold preguntas">¿Cómo puedo promover mi cuenta Free a Premium?</p>
+                <p class="respuestaPreguntas">Debes solicitar a La Conexión Creadora, a través del enlace “quiero ser creador Premium” promover tu cuenta a Premium. Ser creador Premium tiene un costo de XXX dólares a XXX dólares dependiendo del tamaño del grupo y las creaciones que se quieran guardar. </p>
+
+                <p class="RidemyBikeProBold preguntas">¿Qué ventajas tiene un perfil Premium?</p>
+                <p class="respuestaPreguntas">Con una cuenta Premium tienes más posibilidades de crear más grupos, retos e invitar a otras personas a participar. Entre otras ventajas, tienes acceso a:</p>
+                <ul id="listaPreguntas">
+                	<li>Crear XX grupos</li>
+                	<li>Invitar a XX personas para unirse como usuarios Premium</li>
+                	<li>Crear XX retos</li>
+                	<li>Descargar los resultados de los retos</li>
+                	<li>Crear Dinámicas sin límites</li>
+                	<li>Publicar Creaciones sin límites</li>
+                </ul>
+
+                <p class="RidemyBikeProBold preguntas">¿Es posible volver al perfil Free, si ya soy Premium?</p>
+                <p class="respuestaPreguntas">Sí. Pero recuerda que con el perfil Free solo podrás:</p>
+                <ul id="listaPreguntas">
+                	<li>Usar 50 dinámicas</li>
+                	<li>Guardar 05 Creaciones</li>
+                	<li>Participar en Retos Genéricos</li>
+                </ul>
+            </div>
+            <div data-role="footer" data-position="fixed">
+            	<div class="text-left">
+                	<a href="#" data-role="button" data-rel="back" data-icon="carat-l" data-iconpos="notext">atras</a>
+                </div>
+            </div>
+       </div> <!--end page-->
+
+
+       <div data-role="page" id="pageGlosario" data-theme="c">
+            <div data-role="header"><br>
+                <div data-role="main"><h1 class="tituloPage RidemyBikeProBold">Glosario</h1></div>
+            </div>
+            <div data-role="content" id="contenidoGlosario" class="text-left">
+				<ul id="listaGlosario">
+                	<li>
+                    	<p class="RidemyBikeProBold preguntas">Aprendizajes</p>
+                        <span class="definicionGlosario">Son resultado de las evidencias que aportas en un Reto y que ayudarán a encontrar una solución al mismo</span>
+                    </li>
+                	<li>
+                    	<p class="RidemyBikeProBold preguntas">Acciones</p>
+                        <span class="definicionGlosario">Son cosas que puedes proponer hacer durante una Dinámica.</span>
+                    </li>
+                	<li>
+                    	<p class="RidemyBikeProBold preguntas">Dinámicas</p>
+                        <span class="definicionGlosario">Una dinámica es un ejercicio que te ayudará a facilitar un proceso creativo para dar respuesta a una pregunta planeada. </span>
+                    </li>
+                	<li>
+                    	<p class="RidemyBikeProBold preguntas">Mentores</p>
+                        <span class="definicionGlosario">Los Mentores son personas que tienen conocimiento sobre un tema especial y aportan Dinámicas a La Conexión Creadora. </span>
+                    </li>
+                	<li>
+                    	<p class="RidemyBikeProBold preguntas">Creaciones</p>
+                        <span class="definicionGlosario">Las Creaciones son el resultado de practicar las Dinámicas. Una vez realizas un  ejercicio puedes tener como resultado ideas, aprendizajes, oportunidades y acciones.</span>
+                    </li>
+                	<li>
+                    	<p class="RidemyBikeProBold preguntas">Evidencias</p>
+                        <span class="definicionGlosario">Son los aportes personales, frases, experiencias de otros, etc., de los creadores de un Reto.</span>
+                    </li>
+                	<li>
+                    	<p class="RidemyBikeProBold preguntas">Ideas</p>
+                        <span class="definicionGlosario">Las ideas son representaciones mentales que surgen a partir de tu conocimiento y que pueden transformarse en acciones.</span>
+                    </li>
+                	<li>
+                    	<p class="RidemyBikeProBold preguntas">Inteligencia colectiva</p>
+                        <span class="definicionGlosario">Es una forma de inteligencia que surge de procesos de colaboración entre personas, y que resulta muy enriquecedora para la solución de problemáticas teniendo en cuenta que suma distintas visiones y perspectivas sobre un mismo tema.</span>
+                    </li>
+                	<li>
+                    	<p class="RidemyBikeProBold preguntas">Oportunidades</p>
+                        <span class="definicionGlosario">Con las Dinámicas puedes identificar oportunidades, que hace referencia a aspectos convenientes en un contexto determinado para cumplir un objetivo o solucionar algo. </span>
+                    </li>
+                	<li>
+                    	<p class="RidemyBikeProBold preguntas">Retos</p>
+                        <span class="definicionGlosario">Los retos son ejercicios de creación colectiva que te ayudan a dar soluciones novedosas a una pregunta o problemática planteada. </span>
+                    </li>
+                </ul>
+            </div>
+            <div data-role="footer" data-position="fixed">
+            	<div class="text-left">
+                	<a href="#" data-role="button" data-rel="back" data-icon="carat-l" data-iconpos="notext">atras</a>
+                </div>
+            </div>
+       </div> <!--end page-->
+
+
+        <!-- Swiper JS -->
+       <script type="text/javascript" src="js/swiper.min.js"></script>
+        <!-- Initialize Swiper -->
+        <script>
+        var swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            paginationClickable: true
+        });
+        </script>
+
+
+        <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+        <!-- <script type="text/javascript" src="cordova.js"></script> -->
+        <script type="text/javascript" src="js/index.js"></script>
+<!--         <script type="text/javascript">
+            app.initialize();
+        </script> -->
+    </body>
+</html>
